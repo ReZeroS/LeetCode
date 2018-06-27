@@ -1,22 +1,17 @@
 class Solution {
 public:
     int reverse(int x) {
-        long long temp = x;
-        long long sum = 0;
-        if(temp < 0){
-            temp = -temp;
+        bool negative = x > 0;
+        x = negative ? -x : x;
+        long reverseX = 0;
+        while(x){
+            reverseX = reverseX * 10 + x % 10;
+            x /= 10;
         }
-        while(temp){
-            sum = (sum * 10) + (temp % 10);
-            temp /= 10;
-        }
-        if(temp > 0){
-            sum = (sum*10) + temp;
-        }
-        if(sum > INT_MAX){
+        if(reverseX > INT_MAX || reverseX < INT_MIN){
             return 0;
         }
+        return reverseX = negative ? -reverseX : reverseX;
         
-        return x>=0?sum:-sum;
     }
 };
