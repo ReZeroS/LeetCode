@@ -9,13 +9,10 @@
  */
 class Solution {
 public:
-    int count = 0;
     int maxDepth(TreeNode* root) {
         if(!root){
-            return count;
+            return 0;
         }
-        
         return max(maxDepth(root->left) + 1, maxDepth(root->right) + 1);
-        
     }
 };
