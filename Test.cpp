@@ -1,102 +1,114 @@
 #include<stdio.h>
 #include<stdlib.h>
-typedef struct SChain
+
+
+typedef struct Node
 {
     int data;
-    struct SChain *next;
+    struct Node *next;
 } LinkList;
-void CreateList1(LinkList *&L1,int a[],int n)
+
+
+void CreateList(LinkList *&L, int arrays[], int len)
 {
-    a[0] = 1;
-    a[1] = 2;
-    a[2] = 3;
-    a[3] = 4;
     LinkList *s,*r;
-    int i;
-    L1=(LinkList*)malloc(sizeof(LinkList));
-    r=L1;
-    for(i=0; i<n; i++)
+    L = (LinkList*)malloc(sizeof(LinkList));
+    r = L;
+    for(int i = 0; i < len; ++i)
     {
-        s=(LinkList*)malloc(sizeof(LinkList));
-        s->data=a[i];
+        s = (LinkList*)malloc(sizeof(LinkList));
+        s->data = arrays[i];
         r->next=s;
         r=s;
     }
     r->next =NULL;
 }
-void CreateList2(LinkList *&L2,int b[],int n)
+
+
+void print(LinkList* L)
 {
-    b[0] = 5;
-    b[1] = 6;
-    b[2] = 7;
-    b[3] = 8;
-    LinkList *s,*r;
-    int i;
-    L2=(LinkList*)malloc(sizeof(LinkList));
-    r=L2;
-    for(i=0; i<n; i++)
+    LinkList* p;
+    p = L->next;
+    if (L->next==NULL)
     {
-        s=(LinkList*)malloc(sizeof(LinkList));
-        s->data=b[i];
-        r->next=s;
-        r=s;
-    }
-    r->next =NULL;
-}
-void Print(LinkList L)
-{
-    LinkList p;
-    p = L->Next;
-    if (L->Next==NULL)
-    {
-        printf("NULL");
+        return ;
     }
     while(p)
     {
-        printf("%d ", p->Data);
-        p = p->Next;
+        printf("%d ", p->data);
+        p = p->next;
     }
+    printf("\n");
+}
 
-
-    int main()
+LinkList* Merge(LinkList* L1,LinkList* L2)
+{
+    LinkList *L, *p1, *p2, *r;
+    p1 = L1->next;
+    p2 = L2->next;
+    L = (LinkList*)malloc(sizeof(struct Node));
+    L->next = NULL;
+    r = L;
+    while (p1 && p2)
     {
-        LinkList L1, L2, L;
-
-        LinkList Merge( LinkList L1, LinkList L2 );
-        L = Merge(L1, L2);
-        Print(L);
-        Print(L1);
-        print(L2);
-        return 0;
-    }
-    LinkList Merge(LinkList L1,LinkList  L2 )
-    {
-        LinkList L, p1, p2, r ;
-        p1 = L1->Next;
-        p2 = L2->Next;
-        L = (List)malloc(sizeof(struct Node));
-        L->Next = NULL;
-        r = L;
-        while (p1 && p2)
+        if(p1->data < p2->data)
         {
-            if(p1->Data < p2->Data)
-            {
-                r->Next = p1;
-                r = p1;
-                p1 = p1->Next;
-            }
-            else
-            {
-                r->Next = p2;
-                r = p2;
-                p2 = p2->Next;
-            }
+            Node* node = (Node*)malloc(sizeof(struct Node));
+            node->data = p1->data;
+            node->next = NULL;
+            r->next = node;
+            r = node;
+            p1 = p1->next;
         }
-        if(p1)
-            r->Next = p1;
         else
-            r->Next = p2;
-        L1->Next = NULL;
-        L2->Next = NULL;
-        return L;
+        {
+            Node* node = (Node*)malloc(sizeof(struct Node));
+            node->data = p2->data;
+            r->next = node;
+            r = node;
+            p2 = p2->next;
+        }
     }
+//    print(L1);
+    while(p1){
+        Node* node = (Node*)malloc(sizeof(struct Node));
+        node->data = p1->data;
+        r->next = node;
+        r = node;
+        p1 = p1->next;
+    }
+//    print(L1);
+    while(p2){
+        Node* node = (Node*)malloc(sizeof(struct Node));
+        node->data = p2->data;
+        r->next = node;
+        r = node;
+        p2 = p2->next;
+    }
+    r->next = NULL;
+
+//    print(L1);
+//    L1->next = NULL;
+//    L2->next = NULL;
+    return L;
+}
+
+
+int main()
+{
+    LinkList *L1, *L2, *L;
+    int a[] = {1, 2, 3, 4};
+    int b[] = {5, 6, 7, 8};
+
+    CreateList(L1, a, 4);
+    CreateList(L2, b, 4);
+//    print(L1);
+
+
+    L = Merge(L1, L2);
+//    print(L1);
+    print(L);
+    print(L1);
+    print(L2);
+    return 0;
+}
