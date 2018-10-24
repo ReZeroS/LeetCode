@@ -9,14 +9,16 @@
  */
 class Solution {
 public:
-    
-    int ans;
+
     int diameterOfBinaryTree(TreeNode* root) {
         ans = 0;
         height(root);
         return ans;
     }
-   
+
+private:
+    
+    int ans;
     int height(TreeNode* root){
         if(!root){
             return -1;
