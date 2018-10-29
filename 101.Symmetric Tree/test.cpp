@@ -10,15 +10,6 @@
 class Solution {
 public:
     
-    //  void static prints(vector<int> vec){
-    //     cout << "nullptr" << vec.size();
-    //     for_each(vec.begin(), vec.end(), [](auto i){
-    //        cout << " " << i; 
-    //     });
-    //     cout << endl;
-    //     return ;
-    // }
-    
     bool isSymmetric(TreeNode* root) {
         if(!root){
             return true;
@@ -51,9 +42,9 @@ public:
         }
         
         bool flag = true;
-        for_each(ans.begin(), ans.end(), [&](auto vec){
-            // prints(vec);
+        for_each(ans.begin(), ans.end(), [&](vector<int> vec){
             vector<int> reverseVec;
+            reverseVec.resize(vec.size());
             reverse_copy(vec.begin(), vec.end(), reverseVec.begin());
             if(vec != reverseVec){
                 flag = false;
