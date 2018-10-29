@@ -14,6 +14,14 @@ auto initialSetup = ([] {
     return 0;
 })();
 
+
+// There are two situations must will got the cur node.
+//  - root is p or q
+//  - root left right p q
+
+// so just travse the node with the try left and try right 
+// until u can not find both of them on one side
+
 class Solution {
 public:
     TreeNode* lowestCommonAncestor(TreeNode* root, TreeNode* p, TreeNode* q) {
