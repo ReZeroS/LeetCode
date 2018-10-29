@@ -14,7 +14,13 @@ auto initialSetup = ([] {
     return 0;
 })();
 
+//update tips
 
+// All of the nodes' values will be unique.
+// p and q are different and both values will *exist* in the BST.
+
+
+//update description
 // There are two situations must will got the cur node.
 //  - root is p or q
 //  - root left right p q
