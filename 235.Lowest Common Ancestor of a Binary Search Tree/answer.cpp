@@ -19,7 +19,7 @@ auto initialSetup = ([] {
 //  - root is p or q
 //  - root left right p q
 
-// so just travse the node with the try left and try right 
+// so just traverse the node with the try left and try right 
 // until u can not find both of them on one side
 
 class Solution {
