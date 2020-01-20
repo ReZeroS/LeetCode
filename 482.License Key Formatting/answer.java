@@ -14,3 +14,4 @@ class Solution {
 // the sb StringBuilder is a multiple of k we add '-' to the string builder. sb.length() % (k + 1) == k
 // is a way to check if it's a multiple of k or not using modulo arithmetic.
 
+// len > 0 && len % K == 0
