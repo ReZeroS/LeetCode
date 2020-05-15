@@ -23,15 +23,12 @@ public:
         if(root != nullptr) {
             generate(root->left);
             
-            saveQueue(root->val);
+            serialTree.push_back(root->val);
             
             generate(root->right);
         }
     }
     
-    void saveQueue(int current){
-        serialTree.push_back(current);
-    }
     
     /** @return the next smallest number */
     int next() {
