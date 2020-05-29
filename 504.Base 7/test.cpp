@@ -1,6 +1,9 @@
 class Solution {
 public:
     string convertToBase7(int num) {
+        if(num == 0) {
+            return to_string(0);
+        }
         int tmp = num;
         num = tmp < 0 ? -num : num;
         string ans = "";
