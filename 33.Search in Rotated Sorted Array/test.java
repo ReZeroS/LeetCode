@@ -4,7 +4,7 @@ class Solution {
         if (target == nums[minIdx]) return minIdx;
         int m = nums.length;
         int start = (target <= nums[m - 1]) ? minIdx : 0;
-        int end = (target > nums[m - 1]) ? minIdx : m - 1;
+        int end = (target <= nums[m - 1]) ? m - 1 : minIdx;
 
         while (start <= end) {
             int mid = start + (end - start) / 2;
@@ -25,8 +25,3 @@ class Solution {
         return start;
     }
 }
-
-// double binary search.
-// Firstly find the miniest value to split array into two parts.
-// then choose which one exist the target
-// do the second binary search.
